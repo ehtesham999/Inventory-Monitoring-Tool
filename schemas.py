@@ -9,8 +9,17 @@ class ProductCreate(BaseModel):
     weight: Optional[float] = Field(None, gt=0)
     is_express_shipping: Optional[bool] = False
 
+
 class ProductResponse(ProductCreate):
     id: int
-    product_sku: str    
+    product_sku: str
+
     class Config:
         from_attributes = True
+
+
+class ProductUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = Field(None, max_length=500)
+    weight: Optional[float] = Field(None, gt=0)
+    is_express_shipping: Optional[bool] = None
